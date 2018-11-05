@@ -1,0 +1,19 @@
+HEADER:ALGORITHM & TOKEN TYPE
+{
+    "kid": "kd48aJLgod8MrITu8zooGPVY0g95JaCqTbB7ytynG3E=",
+    "alg": "RS256"
+}
+
+PAYLOAD:DATA
+{
+    "sub": "eptcu6f257fu4gdd7kmuamf4r",
+    "token_use": "access",
+    "scope": "cop.dazn.com/write cop.dazn.com/read",
+    "auth_time": 1540999594,
+    "iss": "https://cognito-idp.us-east-2.amazonaws.com/us-east-2_yJPGYWvXU",
+    "exp": 1541003194,
+    "iat": 1540999594,
+    "version": 2,
+    "jti": "2c76dd79-e180-4cc9-9da5-91b0b5be6ddb",
+    "client_id": "eptcu6f257fu4gdd7kmuamf4r"
+}

@@ -1,11 +1,8 @@
-HEADER:ALGORITHM & TOKEN TYPE
 {
-    "kid": "kd48aJLgod8MrITu8zooGPVY0g95JaCqTbB7ytynG3E=",
-    "alg": "RS256"
-}
-
-PAYLOAD:DATA
-{
+    "header": {
+        "kid": "kd48aJLgod8MrITu8zooGPVY0g95JaCqTbB7ytynG3E=",
+        "alg": "RS256"
+    },
     "sub": "eptcu6f257fu4gdd7kmuamf4r",
     "token_use": "access",
     "scope": "cop.dazn.com/write cop.dazn.com/read",

@@ -1,7 +1,9 @@
 # API Gateway Authorizer Function for Auth0 or AWS Cognito using the [JWKS](https://auth0.com/docs/jwks) method.
 
-This code is coming from one of serverless examples found here
+This code is coming from one of serverless.com examples found in their git repo
 https://github.com/serverless/examples/tree/master/aws-node-auth0-cognito-custom-authorizers-api
+
+## Changes
 
 Missing support for JWKS and usage of kid claim for verifying token signature were added.
 

@@ -4,13 +4,13 @@ const jwk = require('jsonwebtoken');
 const jwkToPem = require('jwk-to-pem');
 const request = require('request');
 
-// For Auth0:       https://<project>.auth0.com/
+// For Auth0:       https://<project>.auth0.com
 // refer to:        http://bit.ly/2hoeRXk
-// For AWS Cognito: https://cognito-idp.<region>.amazonaws.com/<user pool id>/
+// For AWS Cognito: https://cognito-idp.<region>.amazonaws.com/<user pool id>
 // refer to:        http://amzn.to/2fo77UI
 const iss = 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_uW0nzHpa6';
 
-// Generate policy to allow this user on this API:
+// Generate policy to allow this user on this API
 const generatePolicy = (principalId, effect, resource) => {
   const authResponse = {};
   authResponse.principalId = principalId;
@@ -28,19 +28,19 @@ const generatePolicy = (principalId, effect, resource) => {
   return authResponse;
 };
 
-// Reusable Authorizer function, set on `authorizer` field in serverless.yml
+// Reusable Authorizer function, set Handler field in AWS lambda function to `auth.authorize`
 module.exports.authorize = (event, context, cb) => {
   console.log('Auth function invoked');
   if (event.authorizationToken) {
-    // Remove 'bearer ' from token:
+    // Remove 'Bearer ' from token
     const token = event.authorizationToken.substring(7);
-    // Also decode jwt header, options
+    // Also decode JWT header, use options
     var tokenDecoded = jwk.decode(token, {complete:true} );
     // Read public key identifier from JWT
     var kid = null;
     if(tokenDecoded.header.kid) kid = tokenDecoded.header.kid;
 
-    // Make a request to the iss + .well-known/jwks.json URL:
+    // Make a request to the iss + .well-known/jwks.json URL
     request(
       { url: `${iss}/.well-known/jwks.json`, json: true },
       (error, response, body) => {
@@ -83,7 +83,7 @@ module.exports.authorize = (event, context, cb) => {
         if(kid) proper_pem = pems[kid]
         else proper_pem = pems[kids[0]];
 
-        // Verify the token:
+        // Verify the token
         jwk.verify(token, proper_pem, { issuer: iss }, (err, decoded) => {
           if (err) {
             console.log('Unauthorized user:', err.message);
